@@ -1,0 +1,110 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+<h1>ALUNOS</h1>
+
+<fieldset>
+  <form [formGroup]="alunoForm" (ngSubmit)="handleSubmit()">
+    <div class="container">
+      <div>
+        <label for="nome">Nome Completo:</label>
+        <input type="text" id="nome" formControlName="nome" required />
+      </div>
+      <div>
+        <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" formControlName="cpf" required mask="000.000.000-00" />
+      </div>
+      <div>
+        <label for="celular">Celular:</label>
+        <input type="tel" id="celular" formControlName="celular" required mask="(00)00000-0000" />
+      </div>
+    </div>
+    <div class="container">
+      <div>
+        <label for="nascimento">Data de Nasc.:</label>
+        <input type="date" id="nascimento" formControlName="dataNascimento" required />
+      </div>
+      <div>
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" formControlName="email" required />
+      </div>
+
+      <div>
+        <label for="apelido">Apelido:</label>
+        <input type="text" id="apelido" formControlName="apelido" />
+      </div>
+    </div>
+
+  </form>
+  <div class="container-menu">
+    <div class="menu">
+      <button type="button submit" (click)="handleSubmit()">Cadastrar Aluno</button>
+      <button type="button" (click)="consultarAlunos()" (click)="exibirFormulario()">Consultar Aluno</button>
+      <!-- <button type="button" (click)="atualizarAluno()" (click)="handleSubmitAlterar()">Atualizar Aluno</button> -->
+    </div>
+  </div>
+
+  <div *ngIf="errorMessagem" class="error-message">
+    {{ errorMessagem }}
+  </div>
+
+  <table *ngIf="alunos.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Data de Nascimento</th>
+        <th>Email</th>
+        <th>Celular</th>
+        <th>Apelido</th>
+        <th>Deletar</th>
+        <th>Alterar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let aluno of alunos">
+        <td>{{ aluno.id }}</td>
+        <td>{{ aluno.nome }}</td>
+        <td>{{ aluno.cpf }}</td>
+        <td>{{ aluno.dataNascimento | date }}</td>
+        <td>{{ aluno.email }}</td>
+        <td>{{ aluno.celular }}</td>
+        <td>{{ aluno.apelido || 'N/A' }}</td>
+        <td><i class="fas fa-trash" *ngIf="aluno.id" (click)="deletarAluno(aluno.id!)"></i></td>
+        <td><i class="fas fa-edit" (click)="selecionarAluno(aluno)"></i></td>
+      </tr>
+    </tbody>
+  </table>
+</fieldset>
+
+<div *ngIf="modalSucesso" class="modal">
+  <div class="modal-content">
+    <span (click)="closeModal()" class="close">&times;</span>
+    <p>{{ sucessoMensagem }}</p>
+  </div>
+</div>
+
+<!-- 
+<div class="modal">
+  <h2>Confirmação</h2>
+  <p>Tem certeza que deseja deletar este aluno?</p>
+  <button (click)="confirmar()">Confirmar</button>
+  <button (click)="cancelar()">Cancelar</button>
+</div> -->
+
+<ng-template #modalConfirmar let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Confirmação</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Tem certeza que deseja deletar este aluno?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('cancel click')">Cancelar</button>
+    <button type="button" class="btn btn-primary" (click)="modal.close('confirm click')">Confirmar</button>
+  </div>
+</ng-template>
