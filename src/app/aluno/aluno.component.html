@@ -59,7 +59,6 @@
         <th>Celular</th>
         <th>Apelido</th>
         <th>Deletar</th>
-        <th>Alterar</th>
       </tr>
     </thead>
     <tbody>
@@ -72,7 +71,6 @@
         <td>{{ aluno.celular }}</td>
         <td>{{ aluno.apelido || 'N/A' }}</td>
         <td><i class="fas fa-trash" *ngIf="aluno.id" (click)="deletarAluno(aluno.id!)"></i></td>
-        <td><i class="fas fa-edit" (click)="selecionarAluno(aluno)"></i></td>
       </tr>
     </tbody>
   </table>

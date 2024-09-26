@@ -108,18 +108,6 @@ export class ProfessorComponent implements OnInit {
     }
   };
 
-  selecionarProfessor(professor: Professor): void{
-    this.professorForm.patchValue({
-      id: professor.id, 
-      nome: professor.nome,
-      cpf: professor.cpf,
-      dataNascimento: professor.dataNascimento,
-      email: professor.email,
-      celular: professor.celular,
-      apelido: professor.apelido
-    });
-  }
-
   formatarCpf(cpf: string): string {
     cpf = cpf.replace(/\D/g, '');
     return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');

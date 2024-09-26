@@ -41,7 +41,6 @@
         <th>Nome</th>
         <th>Creditos</th>
         <th>Deletar</th>
-        <th>Alterar</th>
       </tr>
     </thead>
     <tbody>
@@ -50,7 +49,6 @@
         <td>{{ disciplina.nome }}</td>
         <td>{{ disciplina.numeroCreditos }}</td>
         <td><i class="fas fa-trash" *ngIf="disciplina.id" (click)="deletarDisciplina(disciplina.id!)"></i></td>
-        <td><i class="fas fa-edit"></i></td>
       </tr>
     </tbody>
   </table>

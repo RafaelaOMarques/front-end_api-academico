@@ -107,18 +107,6 @@ export class AlunoComponent implements OnInit {
     }
   };
 
-  selecionarAluno(aluno: Aluno): void{
-    this.alunoForm.patchValue({
-      id: aluno.id, 
-      nome: aluno.nome,
-      cpf: aluno.cpf,
-      dataNascimento: aluno.dataNascimento,
-      email: aluno.email,
-      celular: aluno.celular,
-      apelido: aluno.apelido
-    });
-  }
-
   formatarCpf(cpf: string): string {
     cpf = cpf.replace(/\D/g, '');
     return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');

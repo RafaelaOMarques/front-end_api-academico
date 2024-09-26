@@ -60,7 +60,6 @@
         <th>Celular</th>
         <th>Apelido</th>
         <th>Deletar</th>
-        <th>Alterar</th>
       </tr>
     </thead>
     <tbody>
@@ -74,7 +73,6 @@
         <td>{{ professor.celular }}</td>
         <td>{{ professor.apelido || 'N/A' }}</td>
         <td><i class="fas fa-trash" (click)="deletarProfessor(professor.id!)"></i></td>
-        <td><i class="fas fa-edit" (click)="selecionarProfessor(professor)"></i></td>
       </tr>
     </tbody>
   </table>
