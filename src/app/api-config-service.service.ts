@@ -12,4 +12,11 @@ export class ApiConfigService {
     return `${this.baseUrl}/aluno`;
   }
 
+  getProfessorUrl(): string {
+    return `${this.baseUrl}/professor`;
+  }
+  
+  getDisciplinaUrl(): string {
+    return `${this.baseUrl}/disciplina`;
+  }
 }

@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ApiConfigService } from '../api-config-service.service'; // Importa o serviço de configuração
+import { ApiConfigService } from '../api-config-service.service'; 
 import { Observable } from 'rxjs';
-import { Aluno } from './aluno.model'; // Ajuste o caminho para o seu modelo
-
+import { Aluno } from './aluno.model'; 
 @Injectable({
   providedIn: 'root'
 })

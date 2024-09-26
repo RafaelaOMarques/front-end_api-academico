@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AlunoComponent } from './aluno.component';
+import { AlunoComponent } from '../app/aluno/aluno.component';
 
 describe('AlunoComponent', () => {
   let component: AlunoComponent;

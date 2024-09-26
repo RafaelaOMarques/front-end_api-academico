@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { AlunoService } from './aluno.service';
 import { Aluno } from './aluno.model';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
-// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -13,23 +12,19 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
   imports: [ReactiveFormsModule, CommonModule, FormsModule, NgxMaskDirective ,  NgxMaskPipe],
   providers:[provideNgxMask() ],
   templateUrl: './aluno.component.html',
-  styleUrls: ['./aluno.component.scss'] 
 })
 export class AlunoComponent implements OnInit {
   alunoForm!: FormGroup;
   alunos: Aluno[] = [];
-  errorMessagem: string | null = null;
+  errorMensagem: string | null = null;
   sucessoMensagem: string | null = null;
   alerta: string | null = null;
   modalSucesso = false;
-  // modalConfirmar: NgbModal;
 
   exibeFormulario: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private alunoService: AlunoService, 
-    // private modalService: NgbModal
   ) {
-    // this.modalConfirmar = modalService;
     this.alunoForm = this.formBuilder.group({
       nome: ['', Validators.required],
       cpf: ['', Validators.required],
@@ -45,54 +40,36 @@ export class AlunoComponent implements OnInit {
   cadastrarAluno(): void {
     if (this.alunoForm.valid) {
       const aluno: Aluno = this.alunoForm.value;
+
+      aluno.cpf = this.formatarCpf(aluno.cpf);
+      aluno.celular = this.formatarCelular(aluno.celular);
+
       this.alunoService.createAluno(aluno).subscribe({
         next: (res) => {
           console.log('Aluno cadastrado com sucesso', res);
           this.sucessoMensagem = 'Aluno cadastrado com sucesso!';
-          this.errorMessagem = null;
+          this.consultarAlunos();
+
+          this.errorMensagem = null;
           this.alunoForm.reset();
           this.modalSucesso = true;
         },
         error: (err) => {
           console.error('Erro ao cadastrar aluno', err);
-          this.errorMessagem = 'Erro ao cadastrar aluno';
+          this.errorMensagem = 'Erro ao cadastrar aluno';
           this.sucessoMensagem = null;
         }
       });
+    } else{
+      this.errorMensagem = 'Erro ao cadastrar aluno. Preencha os campos obrigatórios (Nome, CPF, data de nasc, e-mail e celular)';
+
     }
-    this.errorMessagem = 'Erro ao cadastrar aluno. Preencha os campos obrigatórios (Nome, CPF, data de nasc, e-mail e celular)';
-    this.sucessoMensagem = null;
+
   }
 
   handleSubmit() {
     this.cadastrarAluno();
   }
-
-  // alterarAluno(): void {
-  //   if (this.alunoForm.valid) {
-  //     const aluno: Aluno = this.alunoForm.value;
-  //     this.alunoService.updateAluno(id: number, aluno: Aluno).subscribe({
-  //       next: (res) => {
-  //         console.log('Aluno cadastrado com sucesso', res);
-  //         this.sucessoMensagem = 'Aluno atualizado com sucesso!';
-  //         this.errorMessagem = null;
-  //         this.alunoForm.reset();
-  //         this.modalSucesso = true;
-  //       },
-  //       error: (err) => {
-  //         console.error('Erro ao atualizar aluno', err);
-  //         this.errorMessagem = 'Erro ao atualizar aluno';
-  //         this.sucessoMensagem = null;
-  //       }
-  //     });
-  //   }
-  //   this.errorMessagem = 'Erro ao cadastrar aluno. Preencha os campos obrigatórios (Nome, CPF, data de nasc, e-mail e celular)';
-  //   this.sucessoMensagem = null;
-  // }
-  
-  // handleSubmitAlterar() {
-  //   this.alterarAluno();
-  // }
 
   consultarAlunos(): void {
     this.alunoService.getAllAlunos().subscribe({
@@ -100,25 +77,22 @@ export class AlunoComponent implements OnInit {
         this.alunos = res;
         this.exibeFormulario = true;
         console.log('Alunos:', this.alunos);
-        this.errorMessagem = null;  
-
+        this.errorMensagem = null;  
       },
       error: (err) => {
         console.error('Erro ao consultar alunos', err);
-        this.errorMessagem = 'Erro ao consultar alunos: ' + err.message;
+        this.errorMensagem = 'Erro ao consultar alunos: ' + err.message;
       }
     });
   }
 
-  
   async deletarAluno(id: number | undefined): Promise<void>{
     if (id === undefined) {
       console.error('ID do aluno não encontrado');
       return;
     }
-    const confirmado = await this.openModalConfirmar();
 
-    if (true) {
+    if (confirm(`Tem certeza que deseja deletar o aluno id: ${id}? Essa ação é irreversível!`)) {
       this.alunoService.deleteAluno(id).subscribe({
         next: (res) => {
           console.log('Aluno deletado com sucesso', res);
@@ -135,7 +109,7 @@ export class AlunoComponent implements OnInit {
 
   selecionarAluno(aluno: Aluno): void{
     this.alunoForm.patchValue({
-      id: aluno.id, // Caso o ID seja necessário para atualização
+      id: aluno.id, 
       nome: aluno.nome,
       cpf: aluno.cpf,
       dataNascimento: aluno.dataNascimento,
@@ -145,6 +119,16 @@ export class AlunoComponent implements OnInit {
     });
   }
 
+  formatarCpf(cpf: string): string {
+    cpf = cpf.replace(/\D/g, '');
+    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+  }
+
+  formatarCelular(celular: string): string {
+    celular = celular.replace(/\D/g, '');
+    return celular.replace(/(\d{2})(\d{5})(\d{4})/, '($1)$2-$3');
+  }
+
   exibirFormulario(): void {
     this.exibeFormulario = true;
   }
@@ -152,23 +136,9 @@ export class AlunoComponent implements OnInit {
   closeModal() {
     this.modalSucesso = false; 
   }
-
-  openModalConfirmar(){
-    // return new Promise((resolve) => {
-    //   // Verifique se modalConfirmar está definido antes de chamá-lo
-    //   if (this.modalConfirmar) {
-    //     const modal = this.modalConfirmar.open('modalConfirmar');
-        
-    //     modal.result.then(
-    //       () => resolve(true),
-    //       () => resolve(false)
-    //     );
-    //   } else {
-    //     console.error('Modal não está definido');
-    //     resolve(false);
-    //   }
-    // });
+  
+  limparForm(){
+    this.alunoForm.reset();
+    this.errorMensagem = null;
   }
-  
-  
 }

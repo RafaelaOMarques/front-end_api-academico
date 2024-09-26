@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+<h1>DISCIPLINAS</h1>
+
+<fieldset>
+  <form [formGroup]="disciplinaForm" (ngSubmit)="handleSubmit()">
+    <div class="container">
+      <div>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" formControlName="nome" required />
+      </div>
+
+
+      <div>
+        <label for="credito">Creditos:</label>
+        <input type="number" id="credito" formControlName="credito" />
+      </div>
+      <div>
+        <label for="professorId">Professor Id:</label>
+        <input type="number" id="professorId" formControlName="professorId" />
+      </div>
+    </div>
+  </form>
+  <div class="container-menu">
+    <div class="menu">
+      <button type="button submit" (click)="handleSubmit()">Cadastrar Disciplina</button>
+      <button type="button" (click)="consultarDisciplinas()" (click)="exibirFormulario()">Consultar Disciplinas</button>
+      <button type="button" (click)="limparForm()">Limpar</button>
+    </div>
+  </div>
+
+  <div *ngIf="errorMensagem" class="error-message">
+    {{ errorMensagem }}
+  </div>
+
+  <table *ngIf="disciplinas.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Creditos</th>
+        <th>Deletar</th>
+        <th>Alterar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let disciplina of disciplinas">
+        <td>{{ disciplina.id }}</td>
+        <td>{{ disciplina.nome }}</td>
+        <td>{{ disciplina.numeroCreditos }}</td>
+        <td><i class="fas fa-trash" *ngIf="disciplina.id" (click)="deletarDisciplina(disciplina.id!)"></i></td>
+        <td><i class="fas fa-edit"></i></td>
+      </tr>
+    </tbody>
+  </table>
+</fieldset>
+
+<div *ngIf="modalSucesso" class="modal">
+  <div class="modal-content">
+    <span (click)="closeModal()" class="close">&times;</span>
+    <p>{{ sucessoMensagem }}</p>
+  </div>
+</div>

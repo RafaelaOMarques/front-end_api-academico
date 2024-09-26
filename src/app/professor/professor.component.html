@@ -1,10 +1,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 
-<h1>ALUNOS</h1>
+<h1>PROFESSORES</h1>
 
 <fieldset>
-  <form [formGroup]="alunoForm" (ngSubmit)="handleSubmit()">
+  <form [formGroup]="professorForm" (ngSubmit)="handleSubmit()">
     <div class="container">
       <div>
         <label for="nome">Nome Completo:</label>
@@ -38,8 +38,8 @@
   </form>
   <div class="container-menu">
     <div class="menu">
-      <button type="button submit" (click)="handleSubmit()">Cadastrar Aluno</button>
-      <button type="button" (click)="consultarAlunos()" (click)="exibirFormulario()">Consultar Aluno</button>
+      <button type="button submit" (click)="handleSubmit()">Cadastrar Professor</button>
+      <button type="button" (click)="consultarProfessores()" (click)="exibirFormulario()">Consultar Professor</button>
       <button type="button" (click)="limparForm()">Limpar</button>
     </div>
   </div>
@@ -48,10 +48,11 @@
     {{ errorMensagem }}
   </div>
 
-  <table *ngIf="alunos.length > 0">
+  <table *ngIf="professores.length > 0">
     <thead>
       <tr>
         <th>ID</th>
+        <th>Matricula</th>
         <th>Nome</th>
         <th>CPF</th>
         <th>Data de Nascimento</th>
@@ -63,16 +64,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let aluno of alunos">
-        <td>{{ aluno.id }}</td>
-        <td>{{ aluno.nome }}</td>
-        <td>{{ aluno.cpf }}</td>
-        <td>{{ aluno.dataNascimento | date }}</td>
-        <td>{{ aluno.email }}</td>
-        <td>{{ aluno.celular }}</td>
-        <td>{{ aluno.apelido || 'N/A' }}</td>
-        <td><i class="fas fa-trash" *ngIf="aluno.id" (click)="deletarAluno(aluno.id!)"></i></td>
-        <td><i class="fas fa-edit" (click)="selecionarAluno(aluno)"></i></td>
+      <tr *ngFor="let professor of professores">
+        <td>{{ professor.id }}</td>
+        <td>{{ professor.matricula }}</td>
+        <td>{{ professor.nome }}</td>
+        <td>{{ professor.cpf }}</td>
+        <td>{{ professor.dataNascimento | date }}</td>
+        <td>{{ professor.email }}</td>
+        <td>{{ professor.celular }}</td>
+        <td>{{ professor.apelido || 'N/A' }}</td>
+        <td><i class="fas fa-trash" (click)="deletarProfessor(professor.id!)"></i></td>
+        <td><i class="fas fa-edit" (click)="selecionarProfessor(professor)"></i></td>
       </tr>
     </tbody>
   </table>

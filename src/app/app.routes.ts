@@ -2,6 +2,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AlunoComponent } from './aluno/aluno.component';
 import { NgModule } from '@angular/core';
+import { ProfessorComponent } from './professor/professor.component';
+import { DisciplinaComponent } from './disciplina/disciplina.component';
 
 export const routes: Routes = [
   {
@@ -13,5 +15,15 @@ export const routes: Routes = [
     path: 'aluno',
     title:'Aluno Page',
     component: AlunoComponent
+  },
+  {
+    path: 'professor',
+    title:'Professor Page',
+    component: ProfessorComponent
+  },
+  {
+    path: 'disciplina',
+    title:'Disciplina Page',
+    component: DisciplinaComponent
   },
 ];

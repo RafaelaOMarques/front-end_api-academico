@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiConfigService } from './api-config-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { ProfessorComponent } from './professor/professor.component';
+import { DisciplinaComponent } from './disciplina/disciplina.component';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +17,8 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     RouterLink, 
     HomeComponent, 
     AlunoComponent, 
+    ProfessorComponent,
+    DisciplinaComponent,
     FormsModule, 
     ReactiveFormsModule, 
     HttpClientModule, 

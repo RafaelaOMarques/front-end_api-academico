@@ -4,6 +4,11 @@
 
 }
 
+.marca{
+  display: flex;
+  justify-content: space-between;
+}
+
 .header__title{  
   text-align: center;
   font-weight: 700;
@@ -48,4 +53,8 @@ main{
   align-items: center;
   text-align: center;
   padding-top: 50px;
+}
+
+img{
+  height: 50px;
 }
