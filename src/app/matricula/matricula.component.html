@@ -4,26 +4,9 @@
 <h1>MATRICULAR ALUNO</h1>
 
 <fieldset>
-  <form [formGroup]="matriculaForm" (ngSubmit)="handleSubmit()">
-    <div class="container">
-      <div>
-        <label for="alunoId">Id Aluno:</label>
-        <input type="number" id="alunoId" formControlName="alunoId" required />
-      </div>
-
-
-      <div>
-        <label for="matriculaAtiva">Matricula Ativa ?:</label>
-        <input type="checkbox" id="matriculaAtiva" formControlName="matriculaAtiva" />
-      </div>
-
-    </div>
-  </form>
   <div class="container-menu">
     <div class="menu">
-      <button type="button submit" (click)="handleSubmit()">Matricular Aluno</button>
       <button type="button" (click)="consultarMatriculas()" (click)="exibirFormulario()">Consultar Matriculas</button>
-      <button type="button" (click)="limparForm()">Limpar</button>
     </div>
   </div>
 

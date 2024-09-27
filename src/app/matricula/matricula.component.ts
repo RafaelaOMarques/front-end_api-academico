@@ -32,7 +32,6 @@ export class MatriculaComponent implements OnInit{
   ngOnInit(): void {}
 
   cadastrarMatricula(): void {
-
     if (this.matriculaForm.valid){
       const matricula: Matricula = this.matriculaForm.value;
       console.log(matricula);

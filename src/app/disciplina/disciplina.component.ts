@@ -27,7 +27,7 @@ export class DisciplinaComponent implements OnInit{
       // id: ['', Validators.required],
       // disciplinaId: ['', Validators.required],
       nome: ['', Validators.required],
-      credito: ['', Validators.required],
+      numeroCreditos: ['', Validators.required],
       professorId: ['', Validators.required],
     })
 
