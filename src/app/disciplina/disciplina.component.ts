@@ -92,7 +92,7 @@ export class DisciplinaComponent implements OnInit{
           console.log('Disciplina deletada com sucesso', res);
             this.consultarDisciplinas();
             this.modalSucesso = true;
-            this.sucessoMensagem = 'Aluno deletado com sucesso!'
+            this.sucessoMensagem = 'Disciplina deletado com sucesso!'
         },
         error: (err) => {
           console.error('Erro ao deletar disciplina', err);

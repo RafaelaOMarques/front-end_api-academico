@@ -1,7 +1,6 @@
 *{
   margin: 0;
   padding: 0;
-  
 }
 
 fieldset{
@@ -9,14 +8,10 @@ fieldset{
   margin: 20px 50px;
   max-width: 100%;
   border: 1px solid #ccc;
-
 }
 
 .menu{
   display: flex;
-  // flex-direction: row;
-  // justify-content: center;
-  // list-style: none;
   gap: 10px;
   padding-bottom: 10px;
 }
@@ -28,12 +23,10 @@ fieldset{
 
 .container{
   display: flex;
-  // flex-direction: row;
   justify-content: flex-start;
   gap: 60px;
   padding-bottom: 10px;
   padding-left: 10px;
-
 }
 
 button{
@@ -44,7 +37,6 @@ button{
         cursor: pointer;
         transition: background-color 0.3s ease;
         border-radius: 4px;
-
 
         &:hover {
           background-color: greenyellow;
@@ -90,6 +82,29 @@ table {
 
   th {
     background-color: #f2f2f2;
+  }
+
+  #td-nome{
+    text-align: left;
+  }
+}
+
+#table-minor {
+  width: 50%;
+  border-collapse: collapse;
+  margin: 0 auto;
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  #td-nome{
+    text-align: left;
   }
 }
 

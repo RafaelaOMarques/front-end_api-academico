@@ -34,7 +34,7 @@
     {{ errorMensagem }}
   </div>
 
-  <table *ngIf="disciplinas.length > 0">
+  <table id="table-minor" *ngIf="disciplinas.length > 0">
     <thead>
       <tr>
         <th>ID</th>
@@ -46,7 +46,7 @@
     <tbody>
       <tr *ngFor="let disciplina of disciplinas">
         <td>{{ disciplina.id }}</td>
-        <td>{{ disciplina.nome }}</td>
+        <td id="td-nome">{{ disciplina.nome }}</td>
         <td>{{ disciplina.numeroCreditos }}</td>
         <td><i class="fas fa-trash" *ngIf="disciplina.id" (click)="deletarDisciplina(disciplina.id!)"></i></td>
       </tr>

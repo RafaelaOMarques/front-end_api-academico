@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { ProfessorComponent } from './professor/professor.component';
 import { DisciplinaComponent } from './disciplina/disciplina.component';
+import { MatriculaComponent } from './matricula/matricula.component';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import { DisciplinaComponent } from './disciplina/disciplina.component';
     AlunoComponent, 
     ProfessorComponent,
     DisciplinaComponent,
+    MatriculaComponent,
     FormsModule, 
     ReactiveFormsModule, 
     HttpClientModule, 

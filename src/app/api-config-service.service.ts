@@ -19,4 +19,8 @@ export class ApiConfigService {
   getDisciplinaUrl(): string {
     return `${this.baseUrl}/disciplina`;
   }
+    
+  getMatriculaUrl(): string {
+    return `${this.baseUrl}/matricula`;
+  }
 }

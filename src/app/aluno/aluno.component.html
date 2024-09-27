@@ -54,22 +54,22 @@
         <th>ID</th>
         <th>Nome</th>
         <th>CPF</th>
-        <th>Data de Nascimento</th>
+        <!-- <th>Data de Nascimento</th> -->
         <th>Email</th>
         <th>Celular</th>
-        <th>Apelido</th>
+        <!-- <th>Apelido</th> -->
         <th>Deletar</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let aluno of alunos">
         <td>{{ aluno.id }}</td>
-        <td>{{ aluno.nome }}</td>
+        <td id="td-nome">{{ aluno.nome }}</td>
         <td>{{ aluno.cpf }}</td>
-        <td>{{ aluno.dataNascimento | date }}</td>
+        <!-- <td>{{ aluno.dataNascimento | date }}</td> -->
         <td>{{ aluno.email }}</td>
         <td>{{ aluno.celular }}</td>
-        <td>{{ aluno.apelido || 'N/A' }}</td>
+        <!-- <td>{{ aluno.apelido || 'N/A' }}</td> -->
         <td><i class="fas fa-trash" *ngIf="aluno.id" (click)="deletarAluno(aluno.id!)"></i></td>
       </tr>
     </tbody>

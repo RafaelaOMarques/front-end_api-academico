@@ -4,6 +4,7 @@ import { AlunoComponent } from './aluno/aluno.component';
 import { NgModule } from '@angular/core';
 import { ProfessorComponent } from './professor/professor.component';
 import { DisciplinaComponent } from './disciplina/disciplina.component';
+import { MatriculaComponent } from './matricula/matricula.component';
 
 export const routes: Routes = [
   {
@@ -25,5 +26,10 @@ export const routes: Routes = [
     path: 'disciplina',
     title:'Disciplina Page',
     component: DisciplinaComponent
+  },
+  {
+    path: 'matricula',
+    title:'Matricula Page',
+    component: MatriculaComponent
   },
 ];
