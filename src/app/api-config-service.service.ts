@@ -23,4 +23,8 @@ export class ApiConfigService {
   getMatriculaUrl(): string {
     return `${this.baseUrl}/matricula`;
   }
+      
+  getTurmaUrl(): string {
+    return `${this.baseUrl}/turma`;
+  }
 }

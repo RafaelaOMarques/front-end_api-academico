@@ -87,6 +87,12 @@ table {
   #td-nome{
     text-align: left;
   }
+  
+   li{
+    list-style-type: none;
+    padding: 0;
+    margin: 0; 
+   }
 }
 
 #table-minor {
@@ -106,6 +112,7 @@ table {
   #td-nome{
     text-align: left;
   }
+
 }
 
 .modal {

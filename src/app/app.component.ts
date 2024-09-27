@@ -9,6 +9,7 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { ProfessorComponent } from './professor/professor.component';
 import { DisciplinaComponent } from './disciplina/disciplina.component';
 import { MatriculaComponent } from './matricula/matricula.component';
+import { TurmaComponent } from './turma/turma.component';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ import { MatriculaComponent } from './matricula/matricula.component';
     ProfessorComponent,
     DisciplinaComponent,
     MatriculaComponent,
+    TurmaComponent,
     FormsModule, 
     ReactiveFormsModule, 
     HttpClientModule, 

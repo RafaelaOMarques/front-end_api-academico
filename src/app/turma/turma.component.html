@@ -1,1 +1,52 @@
-<p>turma works!</p>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+<h1>TURMAS</h1>
+
+<fieldset>
+  <div class="container-menu">
+    <div class="menu">
+      <button type="button" (click)="consultarTurmas()" (click)="exibirFormulario()">Consultar turmas</button>
+    </div>
+  </div>
+
+  <div *ngIf="errorMensagem" class="error-message">
+    {{ errorMensagem }}
+  </div>
+
+  <table *ngIf="turmas.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Data Inicio</th>
+        <th>Data Fim</th>
+        <th>Disciplina</th>
+        <th>Alunos</th>
+        <th>Deletar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let turma of turmas">
+        <td>{{ turma.id }}</td>
+        <td>{{ turma.dataInicio | date:'dd/MM/yyyy' }}</td>
+        <td>{{ turma.dataFim | date:'dd/MM/yyyy' }}</td>
+        <td>{{ turma.disciplina.nome }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let aluno of turma.alunos" id="td-nome">
+              {{ aluno.nome}}
+            </li>
+          </ul>
+        </td>
+        <td><i class="fas fa-trash" *ngIf="turma.id" (click)="deletarTurma(turma.id!)"></i></td>
+      </tr>
+    </tbody>
+  </table>
+</fieldset>
+
+<div *ngIf="modalSucesso" class="modal">
+  <div class="modal-content">
+    <span (click)="closeModal()" class="close">&times;</span>
+    <p>{{ sucessoMensagem }}</p>
+  </div>
+</div>
