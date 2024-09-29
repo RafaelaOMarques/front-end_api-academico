@@ -10,7 +10,7 @@ import { MatriculaService } from './matricula.service';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, FormsModule, NgxMaskDirective, NgxMaskPipe],
   providers: [provideNgxMask()],
-   templateUrl: './matricula.component.html',
+  templateUrl: './matricula.component.html',
 })
 export class MatriculaComponent implements OnInit{
   matriculaForm!: FormGroup;
@@ -25,7 +25,7 @@ export class MatriculaComponent implements OnInit{
   constructor(private formBuilder: FormBuilder, private matriculaService: MatriculaService,){
     this.matriculaForm = this.formBuilder.group({
       matriculaAtiva: ['', Validators.required],
-      alunoId: ['', Validators.required],
+      idAluno: ['', Validators.required],
     })
 
   }
@@ -33,7 +33,13 @@ export class MatriculaComponent implements OnInit{
 
   cadastrarMatricula(): void {
     if (this.matriculaForm.valid){
-      const matricula: Matricula = this.matriculaForm.value;
+      const matricula: Matricula = {
+        ...this.matriculaForm.value,
+        aluno: { id: this.matriculaForm.value.idAluno }
+      };
+
+      delete matricula.idAluno;
+
       console.log(matricula);
       this.matriculaService.createMatricula(matricula).subscribe({
         next:(res) =>{

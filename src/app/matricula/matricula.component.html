@@ -4,8 +4,22 @@
 <h1>MATRICULAR ALUNO</h1>
 
 <fieldset>
+  <form [formGroup]="matriculaForm" (ngSubmit)="handleSubmit()">
+    <div class="container">
+      <div>
+        <label for="matriculaAtiva">Matricula Ativa:</label>
+        <input type="checkbox" id="matriculaAtiva" formControlName="matriculaAtiva" required />
+      </div>
+      <div>
+        <label for="idAluno">Aluno ID:</label>
+        <input type="number" id="idAluno" formControlName="idAluno" required />
+      </div>
+    </div>
+
+  </form>
   <div class="container-menu">
     <div class="menu">
+      <button type="button submit" (click)="handleSubmit()">Matricular Aluno</button>
       <button type="button" (click)="consultarMatriculas()" (click)="exibirFormulario()">Consultar Matriculas</button>
     </div>
   </div>
@@ -14,10 +28,11 @@
     {{ errorMensagem }}
   </div>
 
-  <table *ngIf="matriculas.length > 0">
+  <table *ngIf="matriculas.length > 0" class="table-minor">
     <thead>
       <tr>
         <th>ID</th>
+        <th>Matricula</th>
         <th>Matricula Ativa</th>
         <th>Aluno</th>
         <th>Deletar</th>
@@ -26,6 +41,7 @@
     <tbody>
       <tr *ngFor="let matricula of matriculas">
         <td>{{ matricula.id }}</td>
+        <td id="td-nome">{{ matricula.matricula }}</td>
         <td id="td-nome">{{ matricula.matriculaAtiva }}</td>
         <td>{{ matricula.idAluno }}</td>
         <td><i class="fas fa-trash" *ngIf="matricula.id" (click)="deletarMatricula(matricula.id!)"></i></td>

@@ -81,6 +81,7 @@ export class DisciplinaComponent implements OnInit{
   }
 
   async deletarDisciplina(id: number | undefined): Promise<void>{
+    
     if (id === undefined) {
       console.error('ID da Disciplina não encontrado');
       return;
@@ -96,6 +97,11 @@ export class DisciplinaComponent implements OnInit{
         },
         error: (err) => {
           console.error('Erro ao deletar disciplina', err);
+          if (err.status === 500) {
+            this.errorMensagem = `Erro: A disciplina não pode ser deletado, ela está vinculado a uma turma`;
+          } else {
+            this.errorMensagem = 'Erro ao tentar deletara disciplina. Por favor, tente novamente mais tarde.';
+          }
         }
       });
     }

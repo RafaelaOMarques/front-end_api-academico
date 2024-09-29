@@ -103,6 +103,12 @@ export class ProfessorComponent implements OnInit {
         },
         error: (err) => {
           console.error('Erro ao deletar professor', err);
+
+          if (err.status === 500) {
+            this.errorMensagem = 'Erro: O Professor não pode ser deletado, ele está vinculado a uma turma';
+          } else {
+            this.errorMensagem = 'Erro ao tentar deletar o professor. Por favor, tente novamente mais tarde.';
+          }
         }
       });
     }

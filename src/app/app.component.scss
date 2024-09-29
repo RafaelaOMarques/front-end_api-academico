@@ -22,17 +22,24 @@
   justify-content: end;
   padding: 10px;
 
+  ul{
+    display: flex;
+  flex-direction: row;
+  }
   
   li{
-    list-style: none;
+     list-style: none;
     font-weight: 600;
     padding: 5px;
   }
+  
   a{
     padding: 10px;
     text-decoration: none;
     color: black;
     transition: background-color 0.3s ease;
+    font-size: 18px;
+    font-weight: 700;
   }
 
   a:hover{
@@ -45,6 +52,7 @@
   a.active {
     background-color: white;
   }
+
 }
 
 main{

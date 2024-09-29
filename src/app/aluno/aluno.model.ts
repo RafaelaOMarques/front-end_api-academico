@@ -1,3 +1,5 @@
+import { Turma } from "../turma/turma.model";
+
 export interface Aluno {
   id?: number;
   nome: string;
@@ -6,4 +8,5 @@ export interface Aluno {
   email: string;
   celular: string;
   apelido?: string;
+  turma?: Turma;
 }
